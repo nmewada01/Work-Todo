@@ -21,7 +21,6 @@ import { ViewIcon } from "@chakra-ui/icons";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { register } from "../Redux/AuthReducer/action";
-import { REGISTER_SUCCESS } from "../Redux/AuthReducer/actionTypes";
 
 const initialState = {
   name: "",
