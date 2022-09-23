@@ -5,6 +5,14 @@
 Tech Stack : REACT,REDUX,CSS,JAVASCRIPT 
 
 
+### Tasks : 
 
-![Todo-App](https://user-images.githubusercontent.com/101567054/192027140-0dea7dc5-8c66-46f7-8e30-94967704fdb5.png)
 
+![tasks](https://user-images.githubusercontent.com/101567054/192028063-ea64fe13-b58a-4316-9b79-31a6982bd3d1.png)
+
+
+
+## SubTasks : 
+
+
+![sub-tasks](https://user-images.githubusercontent.com/101567054/192028036-db01bb06-fb1d-4e39-acc7-a2c83b56a3df.png)
