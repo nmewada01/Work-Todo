@@ -1,0 +1,135 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Hello worlds",
+      "description": "description for hello world",
+      "task_status": "in-progress",
+      "tags": [
+        "Others",
+        "Official"
+      ],
+      "subTasks": [
+        {
+          "subTaskTitle": "Sub Task 1",
+          "status": false
+        },
+        {
+          "subTaskTitle": "Again",
+          "status": false
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Task 2",
+      "description": "description for Task 2",
+      "task_status": "done",
+      "tags": [
+        "Personal"
+      ],
+      "subTasks": [
+        {
+          "subTaskTitle": "Task2: Sub Task 1",
+          "status": false
+        },
+        {
+          "subTaskTitle": "Task2: Sub Task 2",
+          "status": false
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Task 3- Hello world",
+      "description": "description for Task 3 is changing",
+      "task_status": "in-progress",
+      "tags": [
+        "Personal",
+        "Official"
+      ],
+      "subTasks": [
+        {
+          "subTaskTitle": "Task3: Sub Task 1",
+          "status": true
+        },
+        {
+          "subTaskTitle": "Task3: Sub Task 2",
+          "status": true
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Task 4",
+      "description": "description for Task 4",
+      "task_status": "in-progress",
+      "tags": [
+        "Others"
+      ],
+      "subTasks": [
+        {
+          "subTaskTitle": "Task4: Sub Task 1",
+          "status": true
+        },
+        {
+          "subTaskTitle": "Task4: Sub Task 2",
+          "status": false
+        }
+      ]
+    },
+    {
+      "title": "Testing Create New Task",
+      "description": "Default Description Testing Create New Task",
+      "task_status": "todo",
+      "tags": [
+        "Official"
+      ],
+      "subTasks": [
+        {
+          "subTaskTitle": "Testing 1",
+          "status": false
+        },
+        {
+          "subTaskTitle": "Testing 2",
+          "status": false
+        }
+      ],
+      "id": 5
+    },
+    {
+      "title": "Masai School",
+      "description": "Transformation in Education",
+      "task_status": "todo",
+      "tags": [
+        "Others",
+        "Official"
+      ],
+      "subTasks": [
+        {
+          "subTaskTitle": "Students Task",
+          "status": false
+        }
+      ],
+      "id": 6
+    }
+  ],
+  "tagList": [
+    {
+      "id": 1,
+      "tag": "Personal"
+    },
+    {
+      "id": 2,
+      "tag": "Official"
+    },
+    {
+      "id": 3,
+      "tag": "Others"
+    },
+    {
+      "tag": "Hello",
+      "id": 4
+    }
+  ]
+}
