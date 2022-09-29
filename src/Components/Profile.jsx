@@ -22,7 +22,7 @@ const Profile = () => {
     <Box>
       <Flex direction="row" padding="0.5rem">
         <Box width="30%">
-          <Avatar name={profileData.username} />
+          <Avatar name={profileData.username} src="https://img.icons8.com/fluency/2x/microsoft-todo-2019.png" />
         </Box>
         <Flex direction="column" width="70%">
           <Text fontWeight="bold" fontSize="18px">

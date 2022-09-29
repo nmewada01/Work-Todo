@@ -152,7 +152,7 @@ const Editpage = () => {
   }, [id, tasks]);
 
   return (
-    <Box width="100%" paddingTop="1rem" color="white">
+    <Box width="100%" paddingTop="1rem" color="white" bg={"#436c89"}>
       <Flex justifyContent="space-around">
         {/* Task title */}
         <Flex
@@ -179,7 +179,8 @@ const Editpage = () => {
                   onChange={(e) => setTaskDescription(e.target.value)}
                 />
               </Editable>
-              <Button color="navy"
+              <Button
+                color="navy"
                 onClick={() => {
                   updateFunc("textAndDescription");
                 }}
@@ -218,7 +219,11 @@ const Editpage = () => {
                 value={newTag}
                 onChange={(e) => setNewTag(e.target.value)}
               />
-              <Button  color="navy" marginLeft="0.5rem" onClick={createTagHandler}>
+              <Button
+                color="navy"
+                marginLeft="0.5rem"
+                onClick={createTagHandler}
+              >
                 Create
               </Button>
             </Flex>
@@ -262,7 +267,7 @@ const Editpage = () => {
                 value={currentSubTask}
                 onChange={(e) => setCurrentSubTask(e.target.value)}
               />
-              <Button  color="navy" ml="0.5rem" type="submit">
+              <Button color="navy" ml="0.5rem" type="submit">
                 Add
               </Button>
             </Flex>
@@ -310,7 +315,9 @@ const Editpage = () => {
             </Text>
           </Flex>
           <Box m="1rem">
-            <Button  color="navy" onClick={onOpen}>Create New Task</Button>
+            <Button color="navy" onClick={onOpen}>
+              Create New Task
+            </Button>
           </Box>
           <CreateTask isOpen={isOpen} onClose={onClose} />
         </Box>

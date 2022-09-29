@@ -30,7 +30,7 @@ const Login = () => {
       };
 
       dispatch(login(params)).then((r) => {
-        console.log(r)
+        console.log(r);
         navigate("/", { replace: true });
       });
     }
@@ -38,12 +38,18 @@ const Login = () => {
 
   return (
     <Flex minH={"100vh"} align={"center"} justify={"center"}>
-      <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
+      <Stack
+        spacing={8}
+        mx={"auto"}
+        maxW={"lg"}
+        py={12}
+        px={6}
+        color={"white"}
+        borderRadius={"2rem"}
+        bg={"#436c89"}
+      >
         <Stack align={"center"}>
           <Heading fontSize={"4xl"}>Sign in to your account</Heading>
-          <Text fontSize={"lg"} color={"gray.600"}>
-            to enjoy all of our cool <Link color={"blue.400"}>features</Link> ✌️
-          </Text>
         </Stack>
         <Box rounded={"lg"} boxShadow={"lg"} p={8}>
           <Stack spacing={4}>
@@ -70,13 +76,13 @@ const Login = () => {
                 justify={"space-between"}
               >
                 <Checkbox>Remember me</Checkbox>
-                <Link color={"blue.400"}>Forgot password?</Link>
+                <Link color={"#2cb2ba"}>Forgot password?</Link>
               </Stack>
               <Button
-                bg={"blue.400"}
-                color={"white"}
+                bg={"#e4e7e4"}
+                color={"black"}
                 _hover={{
-                  bg: "blue.500",
+                  bg: "white",
                 }}
                 onClick={loginHandler}
               >

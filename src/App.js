@@ -4,7 +4,7 @@ import MainRoutes from "./Pages/MainRoutes";
 
 function App() {
   return (
-    <Container minWidth="6xl" bgImage="linear-gradient(#2193b0 ,#6dd5ed)" fontFamily="cursive" >
+    <Container minWidth="6xl" bg={"#e4e7e4"} fontFamily="cursive" >
       <MainRoutes />
     </Container>
   );
