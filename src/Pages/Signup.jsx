@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useState } from "react";
 import {
   Flex,
   Box,
@@ -17,12 +17,21 @@ import {
   EditablePreview,
   EditableTextarea,
   Divider,
+  useToast,
+  Spinner,
 } from "@chakra-ui/react";
 import { ViewIcon } from "@chakra-ui/icons";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { register } from "../Redux/AuthReducer/action";
-
+import {
+  checkCharacter,
+  checkEmail,
+  checkMobile,
+  checkPassword,
+  checkSignupForm,
+  setToast,
+} from "../utils/Authenticate";
 const initialState = {
   name: "",
   email: "",
@@ -56,9 +65,42 @@ const Signup = () => {
   const [state, setState] = useReducer(reducer, initialState);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const toast = useToast();
+  const loading = useSelector((store) => store.AuthReducer.isLoading);
+  const [eye, setEye] = useState(false);
+  const handleEye = () => {
+    setEye((prev) => !prev);
+  };
 
   const signupHandle = () => {
-    dispatch(register(state)).then((r) => {
+    const isEmpty = checkSignupForm(state);
+    if (!isEmpty.status) {
+      return setToast(toast, isEmpty.message, "error");
+    }
+    const isCharacter = checkCharacter(state.name);
+    if (!isCharacter.status) {
+      return setToast(toast, isCharacter.message, "error");
+    }
+    const isEmail = checkEmail(state.email);
+    if (!isEmail.status) {
+      return setToast(toast, isEmail.message, "error");
+    }
+    const isPassword = checkPassword(state.password);
+    if (!isPassword.status) {
+      return setToast(
+        toast,
+        "Password must contain these things:",
+        "error",
+        3000,
+        isPassword.message
+      );
+    }
+    const isMobile = checkMobile(state.mobile);
+    if (!isMobile.status) {
+      setToast(toast, isMobile.message, "error");
+      return isMobile.status;
+    }
+    dispatch(register(state, toast)).then((r) => {
       navigate("/login", { replace: true });
     });
   };
@@ -79,13 +121,12 @@ const Signup = () => {
           borderRadius={"2rem"}
           bg={"#436c89"}
         >
-       
-          <Stack align={"center"} >
+          <Stack align={"center"}>
             <Heading fontSize={"4xl"} textAlign={"center"}>
-              Sign up
+              Register
             </Heading>
           </Stack>
-          <Divider/>
+          <Divider />
           <Stack spacing={4}>
             <HStack>
               <Box>
@@ -126,15 +167,15 @@ const Signup = () => {
             <FormControl id="password" isRequired>
               <FormLabel>Password</FormLabel>
               <InputGroup>
-                type={"password"}
                 <Input
+                  type={eye ? "text" : "password"}
                   value={state.password}
                   onChange={(e) =>
                     setState({ type: "password", payload: e.target.value })
                   }
                 />
                 <InputRightElement h={"full"}>
-                  <Button variant={"ghost"}>
+                  <Button variant={"ghost"} onClick={handleEye}>
                     <ViewIcon />
                   </Button>
                 </InputRightElement>
@@ -174,7 +215,7 @@ const Signup = () => {
                 }}
                 onClick={signupHandle}
               >
-                Sign up
+                {loading ? <Spinner /> : "Register"}
               </Button>
             </Stack>
             <Stack pt={6}>

@@ -15,9 +15,17 @@ const Sidebar = () => {
   );
   const navigate = useNavigate();
 
+  // const logoutHandler = () => {
+  //   new Promise((res, rej) => {
+  //     res(localStorage.removeItem("token"));
+  //   }).then(() => {
+  //     navigate("/login");
+  //   });
+  // };
   const logoutHandler = () => {
     new Promise((res, rej) => {
       res(localStorage.removeItem("token"));
+      res(localStorage.removeItem("userCredentials"));
     }).then(() => {
       navigate("/login");
     });
@@ -56,7 +64,9 @@ const Sidebar = () => {
           <Profile />
         </Box>
         <Flex justify="center" margin="0.25rem 0">
-          <Button  color="navy" width="100%">Create New Task</Button>
+          <Button color="navy" width="100%">
+            Create New Task
+          </Button>
         </Flex>
         <Box minHeight="70%" overflow="auto">
           <Flex direction="column" gap="5px">

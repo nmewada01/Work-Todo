@@ -16,7 +16,7 @@ const reducer = (state = initialState, action) => {
       return { ...state, isLoading: true };
 
     case types.REGISTER_SUCCESS:
-      return { ...state, isLoading: false };
+      return { ...state, isLoading: false ,RegisterUser: payload};
     case types.REGISTER_FAILURE:
       return { ...state, isLoading: false, isError: true };
 
@@ -33,6 +33,12 @@ const reducer = (state = initialState, action) => {
         isAuth: false,
         token: "",
       };
+    case types.PROFILE_SUCCESS: {
+      return {
+        ...state,
+        profileData: payload,
+      };
+    }
     default:
       return state;
   }

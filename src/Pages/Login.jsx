@@ -1,3 +1,4 @@
+import { ViewIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
@@ -7,9 +8,12 @@ import {
   FormLabel,
   Heading,
   Input,
+  InputGroup,
+  InputRightElement,
   Link,
   Stack,
   Text,
+  useToast,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -18,10 +22,14 @@ import { login } from "../Redux/AuthReducer/action";
 
 const Login = () => {
   const dispatch = useDispatch();
+  const toast = useToast();
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
+  const [eye, setEye] = useState(false);
+  const handleEye = () => {
+    setEye((prev) => !prev);
+  };
   const loginHandler = () => {
     if (username && password) {
       const params = {
@@ -29,8 +37,7 @@ const Login = () => {
         password,
       };
 
-      dispatch(login(params)).then((r) => {
-        console.log(r);
+      dispatch(login(params, toast)).then((r) => {
         navigate("/", { replace: true });
       });
     }
@@ -63,11 +70,18 @@ const Login = () => {
             </FormControl>
             <FormControl id="password" isRequired>
               <FormLabel>Password</FormLabel>
-              <Input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
+              <InputGroup>
+                <Input
+                  type={eye ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <InputRightElement h={"full"}>
+                  <Button variant={"ghost"} onClick={handleEye}>
+                    <ViewIcon />
+                  </Button>
+                </InputRightElement>
+              </InputGroup>
             </FormControl>
             <Stack spacing={10}>
               <Stack
