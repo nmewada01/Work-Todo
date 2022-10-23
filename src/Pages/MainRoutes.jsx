@@ -2,6 +2,7 @@ import { Stack } from "@chakra-ui/react";
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Sidebar from "../Components/Sidebar";
+import PrivateRoute from "../PrivateRoute/PrivateR";
 import Editpage from "./Editpage";
 import Homepage from "./Homepage";
 import Login from "./Login";
@@ -13,10 +14,12 @@ const MainRoutes = () => {
       <Route
         path="/"
         element={
-          <Stack direction="row">
-            <Sidebar />
-            <Homepage />
-          </Stack>
+          <PrivateRoute>
+            <Stack direction="row">
+              <Sidebar />
+              <Homepage />
+            </Stack>
+          </PrivateRoute>
         }
       />
       <Route

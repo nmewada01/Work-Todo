@@ -17,16 +17,19 @@ import {
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link as RouterLink, useNavigate } from "react-router-dom";
+import { Link as RouterLink, useLocation, useNavigate } from "react-router-dom";
 import { login } from "../Redux/AuthReducer/action";
 
 const Login = () => {
   const dispatch = useDispatch();
   const toast = useToast();
   const navigate = useNavigate();
+  const location = useLocation();
+  const comingFrom = location.state?.from?.pathname || "/";
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [eye, setEye] = useState(false);
+
   const handleEye = () => {
     setEye((prev) => !prev);
   };
@@ -38,7 +41,7 @@ const Login = () => {
       };
 
       dispatch(login(params, toast)).then((r) => {
-        navigate("/", { replace: true });
+        navigate(comingFrom, { replace: true });
       });
     }
   };
