@@ -22,14 +22,13 @@ import { getLocalData } from "../utils/localStorage";
 const Profile = () => {
   const dispatch = useDispatch();
 
-  const profileData = useSelector((state) => state.AuthReducer?.profileData);
-  console.log(profileData);
+  const profileData = useSelector((state) => state?.AuthReducer?.profileData);
   useEffect(() => {
     if (profileData?.length === 0) {
       const token = getLocalData("token");
       const username = getLocalData("userCredentials");
       const payload = {
-        username: username,
+        email: username,
         token,
       };
       dispatch(profile(payload));
@@ -44,7 +43,7 @@ const Profile = () => {
             // src="https://img.icons8.com/fluency/2x/microsoft-todo-2019.png"
             name={profileData.length !== 0 ? profileData.name : ""}
             src={
-              profileData.length !== 0
+              profileData?.length !== 0
                 ? profileData.description
                 : "https://img.icons8.com/fluency/2x/microsoft-todo-2019.png"
             }

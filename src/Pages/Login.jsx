@@ -26,17 +26,18 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const comingFrom = location.state?.from?.pathname || "/";
-  const [username, setUsername] = useState("");
+  // const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
   const [eye, setEye] = useState(false);
 
   const handleEye = () => {
     setEye((prev) => !prev);
   };
   const loginHandler = () => {
-    if (username && password) {
+    if (email && password) {
       const params = {
-        username,
+        email,
         password,
       };
 
@@ -67,8 +68,8 @@ const Login = () => {
               <FormLabel>Username</FormLabel>
               <Input
                 type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </FormControl>
             <FormControl id="password" isRequired>
