@@ -65,7 +65,7 @@ const Login = () => {
         <Box rounded={"lg"} boxShadow={"lg"} p={8}>
           <Stack spacing={4}>
             <FormControl id="username" isRequired>
-              <FormLabel>Username</FormLabel>
+              <FormLabel>Email</FormLabel>
               <Input
                 type="text"
                 value={email}

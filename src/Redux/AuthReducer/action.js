@@ -51,7 +51,7 @@ import * as types from "./actionTypes";
 const register = (payload, toast) => (dispatch) => {
   dispatch({ type: types.REGISTER_REQUEST });
   return axios
-    .post("http://localhost:8080/auth/signup", payload)
+    .post("https://naresh-auth-user.onrender.com/auth/signup", payload)
     .then((r) => {
       console.log(r.data);
       setToast(toast, "Registered Successful", "success");
@@ -68,7 +68,7 @@ const login = (payload, toast) => (dispatch) => {
   saveLocalData("userCredentials", payload.email);
   dispatch({ type: types.LOGIN_REQUEST });
   return axios
-    .post("http://localhost:8080/auth/login", payload)
+    .post("https://naresh-auth-user.onrender.com/auth/login", payload)
     .then((r) => {
       console.log(r)
       setToast(toast, "Login Successful", "success");
@@ -84,7 +84,7 @@ const profile = (payload) => (dispatch) => {
   dispatch({ type: types.PROFILE_REQUEST });
   const options = {
     method: "GET",
-    url: `http://localhost:8080/auth/${payload.email}`,
+    url: `https://naresh-auth-user.onrender.com/auth/${payload.email}`,
     headers: { Authorization: `Bearer ${payload.token}` },
   };
   return axios(options)
