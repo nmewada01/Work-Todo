@@ -167,7 +167,7 @@ const Editpage = () => {
   }, [id, tasks]);
 
   return (
-    <Box width="100%" paddingTop="1rem" color="white" bg={"#436c89"}>
+    <Box width="100%" paddingTop="1rem" color="white" bg={"#899a8e"}>
       <Flex justifyContent="space-around">
         {/* Task title */}
         <Flex

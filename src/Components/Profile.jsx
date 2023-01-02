@@ -3,6 +3,7 @@ import { Avatar, Box, Button, Flex, Text } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { profile } from "../Redux/AuthReducer/action";
 import { getLocalData } from "../utils/localStorage";
+import { ProfileModal } from "../Modals/profileModal";
 
 // const Profile = () => {
 //   const dispatch = useDispatch();
@@ -21,7 +22,6 @@ import { getLocalData } from "../utils/localStorage";
 
 const Profile = () => {
   const dispatch = useDispatch();
-
   const profileData = useSelector((state) => state?.AuthReducer?.profileData);
   useEffect(() => {
     if (profileData?.length === 0) {
@@ -56,9 +56,7 @@ const Profile = () => {
         </Flex>
       </Flex>
       <Box textAlign="right" paddingRight="0.5rem">
-        <Button color="navy" variant="link">
-          View profile
-        </Button>
+        <ProfileModal profileData={profileData} />
       </Box>
     </Box>
   );

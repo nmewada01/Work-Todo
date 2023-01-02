@@ -119,7 +119,7 @@ const Signup = () => {
           p={8}
           color={"white"}
           borderRadius={"2rem"}
-          bg={"#436c89"}
+          bg={"#4e4b58"}
         >
           <Stack align={"center"}>
             <Heading fontSize={"4xl"} textAlign={"center"}>
@@ -194,8 +194,11 @@ const Signup = () => {
               </FormControl>
             </Box>
             <Box>
-              <FormLabel >Image</FormLabel >
-              <Editable placeholder="Paste Link Here..." border={'2px solid white'}>
+              <FormLabel>Image</FormLabel>
+              <Editable
+                placeholder="Paste Link Here..."
+                border={"2px solid white"}
+              >
                 <EditablePreview />
                 <EditableTextarea
                   value={state.description}

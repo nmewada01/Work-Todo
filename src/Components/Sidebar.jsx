@@ -1,14 +1,16 @@
-import { Box, Button, Flex, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Text, useDisclosure } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { getTagsList } from "../Redux/AppReducer/action";
 import Profile from "./Profile";
+import CreateTask from "../Modals/CreateTask";
 
 const Sidebar = () => {
   const dispatch = useDispatch();
   const tagLists = useSelector((state) => state.AppReducer.tags);
   const tasks = useSelector((state) => state.AppReducer.tasks);
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const [searchParams, setSearchParams] = useSearchParams();
   const [selectedTags, setSelectedTags] = useState(
     searchParams.getAll("tags") || []
@@ -65,7 +67,12 @@ const Sidebar = () => {
         </Box>
         <Flex justify="center" margin="0.25rem 0">
           <Button color="navy" width="100%">
-            Create New Task
+            <Box m="1rem">
+              <Button color="navy" onClick={onOpen}>
+                Create New Task
+              </Button>
+            </Box>
+            <CreateTask isOpen={isOpen} onClose={onClose} />
           </Button>
         </Flex>
         <Box minHeight="70%" overflow="auto">
