@@ -1,4 +1,4 @@
-import { DeleteIcon } from "@chakra-ui/icons";
+import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
@@ -18,12 +18,13 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import CreateTask from "../Modals/CreateTask";
 import {
   addSubTasks,
   addTag,
   deleteSubTask,
+  deleteTasks,
   getTagsList,
   getTasks,
   updateSubtasksList,
@@ -48,7 +49,7 @@ const Editpage = () => {
   const [checkBox, setCheckBox] = useState([]);
   const [currentSubTask, setCurrentSubTask] = useState("");
   const [newTag, setNewTag] = useState("");
-
+  const navigate = useNavigate();
   const deleteHandler = (title) => {
     let newSubTasks = subTasks.filter((item) => item.subTaskTitle !== title);
     dispatch(deleteSubTask(id, { subTasks: newSubTasks })).then(() => {
@@ -78,6 +79,13 @@ const Editpage = () => {
       //api call to add this new tags
       dispatch(addTag(newTag)).then(() => dispatch(getTagsList()));
     }
+  };
+  const deleteFunc = (id) => {
+    dispatch(deleteTasks(id)).then(() => {
+      getTasks();
+      navigate("/");
+      
+    });
   };
 
   const updateFunc = (identifier, value) => {
@@ -179,14 +187,24 @@ const Editpage = () => {
                   onChange={(e) => setTaskDescription(e.target.value)}
                 />
               </Editable>
-              <Button
-                color="navy"
-                onClick={() => {
-                  updateFunc("textAndDescription");
-                }}
-              >
-                Update
-              </Button>
+              <Flex justifyContent={"space-around"}>
+                <Button
+                  color="navy"
+                  onClick={() => {
+                    updateFunc("textAndDescription");
+                  }}
+                >
+                  <EditIcon />
+                </Button>
+                <Button
+                  color="navy"
+                  onClick={() => {
+                    deleteFunc(id);
+                  }}
+                >
+                  <DeleteIcon />
+                </Button>
+              </Flex>
             </Stack>
           </Box>
 

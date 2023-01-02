@@ -13,19 +13,40 @@ const getTasks = () => (dispatch) => {
     });
 };
 
-const getTagsList = () => (dispatch) => {
-  dispatch({ type: types.GET_TAG_REQUEST });
-
+const createTask = (payload) => (dispatch) => {
+  dispatch({ type: types.CREATE_TASKS_REQUEST });
   return axios
-    .get(`${process.env.REACT_APP_BASE_API}/tagList`)
+    .post(`${process.env.REACT_APP_BASE_API}/tasks`, payload)
     .then((r) => {
-      dispatch({ type: types.GET_TAG_SUCCESS, payload: r.data });
+      dispatch({ type: types.CREATE_TASKS_SUCCESS, payload: r });
     })
     .catch((e) => {
-      dispatch({ type: types.GET_TAG_FAILURE, payload: e });
+      dispatch({ type: types.CREATE_TASKS_FAILURE, payload: e });
     });
+
 };
 
+
+const updateTasks = (id, payload) => (dispatch) => {
+  dispatch({ type: types.UPDATE_TASK_REQUEST });
+
+  return axios
+    .patch(`${process.env.REACT_APP_BASE_API}/tasks/${id}`, payload)
+    .then((r) => {
+      dispatch({ type: types.UPDATE_TASK_SUCCESS, payload: r.data });
+      return types.UPDATE_TASK_SUCCESS;
+    })
+    .catch((e) => dispatch({ type: types.UPDATE_TASK_FAILURE, payload: e }));
+};
+
+const deleteTasks = (id) => (dispatch) => {
+  dispatch({ type: types.DELETE_TASK_REQUEST });
+  return axios.delete(`${process.env.REACT_APP_BASE_API}/tasks/${id}`).then(() => {
+    dispatch({ type: types.DELETE_TASK_SUCCESS })
+  }).catch((err) => {
+    dispatch({ type: types.DELETE_TASK_FAILURE, payload: err })
+  })
+}
 const updateSubtasksList = (id, payload) => (dispatch) => {
   dispatch({ type: types.UPDATE_SUBTASKS_REQUEST });
 
@@ -41,28 +62,9 @@ const updateSubtasksList = (id, payload) => (dispatch) => {
     });
 };
 
-const updateTasks = (id, payload) => (dispatch) => {
-  dispatch({ type: types.UPDATE_TASK_REQUEST });
 
-  return axios
-    .patch(`${process.env.REACT_APP_BASE_API}/tasks/${id}`, payload)
-    .then((r) => {
-      dispatch({ type: types.UPDATE_TASK_SUCCESS, payload: r.data });
-      return types.UPDATE_TASK_SUCCESS;
-    })
-    .catch((e) => dispatch({ type: types.UPDATE_TASK_FAILURE, payload: e }));
-};
 
-const addTag = (tag) => (dispatch) => {
-  dispatch({ type: types.ADD_TAG_REQUEST });
 
-  return axios
-    .post(`${process.env.REACT_APP_BASE_API}/tagList`, { tag })
-    .then((r) => {
-      dispatch({ type: types.ADD_TAG_SUCCESS, payload: r.data });
-    })
-    .catch((e) => dispatch({ type: types.ADD_TAG_FAILURE, payload: e }));
-};
 
 const addSubTasks = (id, payload) => (dispatch) => {
   dispatch({ type: types.ADD_SUBTASKS_REQUEST });
@@ -88,15 +90,29 @@ const deleteSubTask = (id, payload) => (dispatch) => {
     );
 };
 
-const createTask = (payload) => (dispatch) => {
-  dispatch({ type: types.CREATE_TASKS_REQUEST });
+
+
+const addTag = (tag) => (dispatch) => {
+  dispatch({ type: types.ADD_TAG_REQUEST });
+
   return axios
-    .post(`${process.env.REACT_APP_BASE_API}/tasks`, payload)
+    .post(`${process.env.REACT_APP_BASE_API}/tagList`, { tag })
     .then((r) => {
-      dispatch({ type: types.CREATE_TASKS_SUCCESS, payload: r });
+      dispatch({ type: types.ADD_TAG_SUCCESS, payload: r.data });
+    })
+    .catch((e) => dispatch({ type: types.ADD_TAG_FAILURE, payload: e }));
+};
+
+const getTagsList = () => (dispatch) => {
+  dispatch({ type: types.GET_TAG_REQUEST });
+
+  return axios
+    .get(`${process.env.REACT_APP_BASE_API}/tagList`)
+    .then((r) => {
+      dispatch({ type: types.GET_TAG_SUCCESS, payload: r.data });
     })
     .catch((e) => {
-      dispatch({ type: types.CREATE_TASKS_FAILURE, payload: e });
+      dispatch({ type: types.GET_TAG_FAILURE, payload: e });
     });
 };
 
@@ -109,6 +125,7 @@ export {
   addSubTasks,
   deleteSubTask,
   createTask,
+  deleteTasks
 };
 
 

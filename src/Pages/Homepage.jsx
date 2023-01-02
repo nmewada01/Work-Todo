@@ -7,6 +7,7 @@ import { getTasks } from "../Redux/AppReducer/action";
 
 const Homepage = () => {
   const tasks = useSelector((state) => state.AppReducer.tasks);
+
   const [searchParams] = useSearchParams();
   const dispatch = useDispatch();
 
@@ -48,7 +49,12 @@ const Homepage = () => {
           overflow="auto"
           color="whitesmoke"
         >
-          <Box bgImage="linear-gradient(#56ab2f,#a8e063)" position="sticky" top="0" zIndex="1">
+          <Box
+            bgImage="linear-gradient(#56ab2f,#a8e063)"
+            position="sticky"
+            top="0"
+            zIndex="1"
+          >
             <Text textAlign="center" fontWeight="bold">
               TODO
             </Text>
@@ -105,7 +111,12 @@ const Homepage = () => {
           overflow="auto"
           color="whitesmoke"
         >
-          <Box bgImage="linear-gradient(#606c88,#004e92)" position="sticky" top="0" zIndex="1">
+          <Box
+            bgImage="linear-gradient(#606c88,#004e92)"
+            position="sticky"
+            top="0"
+            zIndex="1"
+          >
             <Text textAlign="center" fontWeight="bold">
               DONE
             </Text>
