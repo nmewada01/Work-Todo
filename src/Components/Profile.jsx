@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Avatar, Box, Button, Flex, Text } from "@chakra-ui/react";
+import { Avatar, Box, Flex, Text } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { profile } from "../Redux/AuthReducer/action";
 import { getLocalData } from "../utils/localStorage";
