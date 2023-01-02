@@ -81,7 +81,6 @@ const addSubTasks = (id, payload) => (dispatch) => {
 
 const deleteSubTask = (id, payload) => (dispatch) => {
   dispatch({ type: types.DELETE_SUBTASKS_REQUEST });
-
   return axios
     .patch(`${process.env.REACT_APP_BASE_API}/tasks/${id}`, payload)
     .then((r) => dispatch({ type: types.DELETE_SUBTASKS_SUCCESS, payload: r }))
@@ -102,6 +101,15 @@ const addTag = (tag) => (dispatch) => {
     })
     .catch((e) => dispatch({ type: types.ADD_TAG_FAILURE, payload: e }));
 };
+
+const deleteTag = (id) => (dispatch) => {
+  dispatch({ type: types.DELETE_TAG_REQUEST });
+  return axios.delete(`${process.env.REACT_APP_BASE_API}/tagList/${id}`).then(() => {
+    dispatch({ type: types.DELETE_TAG_SUCCESS })
+  }).catch((err) => {
+    dispatch({ type: types.DELETE_TAG_FAILURE, payload: err })
+  })
+}
 
 const getTagsList = () => (dispatch) => {
   dispatch({ type: types.GET_TAG_REQUEST });
@@ -125,7 +133,8 @@ export {
   addSubTasks,
   deleteSubTask,
   createTask,
-  deleteTasks
+  deleteTasks,
+  deleteTag
 };
 
 

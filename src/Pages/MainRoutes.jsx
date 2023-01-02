@@ -65,13 +65,7 @@ export const loader = () => {
       height={"100vh"}
       w={"100%"}
     >
-      <Spinner
-        thickness="5rem"
-        height={"50vh"}
-        w={"50%"}
-        margin={"auto"}
-        speed="0.65s"
-      />
+      <Spinner thickness="5rem" margin={"auto"} size={"25xl"} speed="0.65s" />
     </Container>
   );
 };

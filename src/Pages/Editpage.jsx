@@ -25,6 +25,7 @@ import {
   addSubTasks,
   addTag,
   deleteSubTask,
+  deleteTag,
   deleteTasks,
   getTagsList,
   getTasks,
@@ -75,6 +76,12 @@ const Editpage = () => {
     }
   };
 
+  const deleteTagFunc = (id) => {
+    dispatch(deleteTag(id)).then(() => {
+      dispatch(getTagsList());
+    });
+  };
+
   const createTagHandler = () => {
     if (newTag) {
       //api call to add this new tags
@@ -83,7 +90,7 @@ const Editpage = () => {
   };
   const deleteFunc = (id) => {
     dispatch(deleteTasks(id)).then(() => {
-      getTasks();
+      dispatch(getTasks());
       navigate("/");
     });
   };
@@ -264,9 +271,17 @@ const Editpage = () => {
                 {tagList.length > 0 &&
                   tagList.map((item) => {
                     return (
-                      <Checkbox key={item.id} value={`${item.tag}`}>
-                        {item.tag}
-                      </Checkbox>
+                      <Flex
+                        justifyContent={"space-between"}
+                        alignItems={"center"}
+                      >
+                        <Checkbox key={item.id} value={`${item.tag}`}>
+                          {item.tag}
+                        </Checkbox>
+                        <Tooltip label={"Delete Tag"}>
+                          <DeleteIcon onClick={() => deleteTagFunc(item.id)} />
+                        </Tooltip>
+                      </Flex>
                     );
                   })}
               </Stack>
