@@ -51,9 +51,8 @@ import * as types from "./actionTypes";
 const register = (payload, toast) => (dispatch) => {
   dispatch({ type: types.REGISTER_REQUEST });
   return axios
-    .post("https://nareshrajput-auth.onrender.com/auth/signup", payload)
+    .post(`${process.env.REACT_APP_AUTHENTICATION}/auth/signup`, payload)
     .then((r) => {
-      console.log(r.data);
       setToast(toast, "Registered Successful", "success");
       dispatch({ type: types.REGISTER_SUCCESS, payload: r.data });
     })
@@ -64,13 +63,11 @@ const register = (payload, toast) => (dispatch) => {
 };
 
 const login = (payload, toast) => (dispatch) => {
-  console.log(payload)
   saveLocalData("userCredentials", payload.email);
   dispatch({ type: types.LOGIN_REQUEST });
   return axios
-    .post("https://nareshrajput-auth.onrender.com/auth/login", payload)
+    .post(`${process.env.REACT_APP_AUTHENTICATION}/auth/login`, payload)
     .then((r) => {
-      console.log(r)
       setToast(toast, "Login Successful", "success");
       dispatch({ type: types.LOGIN_SUCCESS, payload: r.data.token });
     })
@@ -84,12 +81,11 @@ const profile = (payload) => (dispatch) => {
   dispatch({ type: types.PROFILE_REQUEST });
   const options = {
     method: "GET",
-    url: `https://nareshrajput-auth.onrender.com/auth/${payload.email}`,
+    url: `${process.env.REACT_APP_AUTHENTICATION}/auth/${payload.email}`,
     headers: { Authorization: `Bearer ${payload.token}` },
   };
   return axios(options)
     .then((r) => {
-      console.log("action", r.data)
       dispatch({
         type: types.PROFILE_SUCCESS,
         payload: r.data,

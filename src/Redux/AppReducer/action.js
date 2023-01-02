@@ -4,7 +4,7 @@ import * as types from "./actionTypes";
 const getTasks = () => (dispatch) => {
   dispatch({ type: types.GET_TASKS_REQUEST });
   return axios
-    .get("https://mock-server-todo-production.up.railway.app/tasks")
+    .get(`${process.env.REACT_APP_BASE_API}/tasks`)
     .then((r) => {
       dispatch({ type: types.GET_TASKS_SUCCESS, payload: r.data });
     })
@@ -17,7 +17,7 @@ const getTagsList = () => (dispatch) => {
   dispatch({ type: types.GET_TAG_REQUEST });
 
   return axios
-    .get("https://mock-server-todo-production.up.railway.app/tagList")
+    .get(`${process.env.REACT_APP_BASE_API}/tagList`)
     .then((r) => {
       dispatch({ type: types.GET_TAG_SUCCESS, payload: r.data });
     })
@@ -30,7 +30,7 @@ const updateSubtasksList = (id, payload) => (dispatch) => {
   dispatch({ type: types.UPDATE_SUBTASKS_REQUEST });
 
   return axios
-    .patch(`https://mock-server-todo-production.up.railway.app/tasks/${id}`, payload, {
+    .patch(`${process.env.REACT_APP_BASE_API}/tasks/${id}`, payload, {
       headers: {
         "Access-Control-Allow-Origin": "*",
       },
@@ -45,7 +45,7 @@ const updateTasks = (id, payload) => (dispatch) => {
   dispatch({ type: types.UPDATE_TASK_REQUEST });
 
   return axios
-    .patch(`https://mock-server-todo-production.up.railway.app/tasks/${id}`, payload)
+    .patch(`${process.env.REACT_APP_BASE_API}/tasks/${id}`, payload)
     .then((r) => {
       dispatch({ type: types.UPDATE_TASK_SUCCESS, payload: r.data });
       return types.UPDATE_TASK_SUCCESS;
@@ -57,7 +57,7 @@ const addTag = (tag) => (dispatch) => {
   dispatch({ type: types.ADD_TAG_REQUEST });
 
   return axios
-    .post("https://mock-server-todo-production.up.railway.app/tagList", { tag })
+    .post(`${process.env.REACT_APP_BASE_API}/tagList`, { tag })
     .then((r) => {
       dispatch({ type: types.ADD_TAG_SUCCESS, payload: r.data });
     })
@@ -68,7 +68,7 @@ const addSubTasks = (id, payload) => (dispatch) => {
   dispatch({ type: types.ADD_SUBTASKS_REQUEST });
 
   return axios
-    .patch(`https://mock-server-todo-production.up.railway.app/tasks/${id}`, payload)
+    .patch(`${process.env.REACT_APP_BASE_API}/tasks/${id}`, payload)
     .then((r) => {
       dispatch({ type: types.ADD_SUBTASKS_SUCCESS, payload: r });
     })
@@ -81,7 +81,7 @@ const deleteSubTask = (id, payload) => (dispatch) => {
   dispatch({ type: types.DELETE_SUBTASKS_REQUEST });
 
   return axios
-    .patch(`https://mock-server-todo-production.up.railway.app/tasks/${id}`, payload)
+    .patch(`${process.env.REACT_APP_BASE_API}/tasks/${id}`, payload)
     .then((r) => dispatch({ type: types.DELETE_SUBTASKS_SUCCESS, payload: r }))
     .catch((e) =>
       dispatch({ type: types.DELETE_SUBTASKS_FAILURE, payload: e })
@@ -91,7 +91,7 @@ const deleteSubTask = (id, payload) => (dispatch) => {
 const createTask = (payload) => (dispatch) => {
   dispatch({ type: types.CREATE_TASKS_REQUEST });
   return axios
-    .post("https://mock-server-todo-production.up.railway.app/tasks", payload)
+    .post(`${process.env.REACT_APP_BASE_API}/tasks`, payload)
     .then((r) => {
       dispatch({ type: types.CREATE_TASKS_SUCCESS, payload: r });
     })
@@ -112,4 +112,3 @@ export {
 };
 
 
-//https://desktime-tanner-redux.herokuapp.com/
