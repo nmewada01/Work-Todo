@@ -38,7 +38,7 @@ const Homepage = () => {
   }, [dispatch, tasks.length]);
 
   return (
-    <Box width="100%" paddingTop="1rem" bg={"#436c89"}>
+    <Box width="100%" paddingTop="1rem" bg={"#4e4b58"}>
       <Flex justifyContent="space-around">
         {/* Todo */}
         <Box

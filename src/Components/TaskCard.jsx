@@ -46,6 +46,7 @@ const TaskCard = ({ id, title, description, tags, subTasks, colorScheme }) => {
       boxShadow="0px 10px 15px -3px rgba(0,0,0,0.1)"
       margin="0.5rem auto 1rem"
       padding="10px"
+      borderTop={"1px solid grey"}
     >
       <Flex justifyContent="space-between">
         <Text>{title}</Text>
