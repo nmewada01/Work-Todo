@@ -14,6 +14,7 @@ import {
   RadioGroup,
   Stack,
   Text,
+  Tooltip,
   useDisclosure,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
@@ -84,7 +85,6 @@ const Editpage = () => {
     dispatch(deleteTasks(id)).then(() => {
       getTasks();
       navigate("/");
-      
     });
   };
 
@@ -188,22 +188,26 @@ const Editpage = () => {
                 />
               </Editable>
               <Flex justifyContent={"space-around"}>
-                <Button
-                  color="navy"
-                  onClick={() => {
-                    updateFunc("textAndDescription");
-                  }}
-                >
-                  <EditIcon />
-                </Button>
-                <Button
-                  color="navy"
-                  onClick={() => {
-                    deleteFunc(id);
-                  }}
-                >
-                  <DeleteIcon />
-                </Button>
+                <Tooltip label={"Update Task"}>
+                  <Button
+                    color="navy"
+                    onClick={() => {
+                      updateFunc("textAndDescription");
+                    }}
+                  >
+                    <EditIcon />
+                  </Button>
+                </Tooltip>
+                <Tooltip label={"Delete Task"}>
+                  <Button
+                    color="navy"
+                    onClick={() => {
+                      deleteFunc(id);
+                    }}
+                  >
+                    <DeleteIcon />
+                  </Button>
+                </Tooltip>
               </Flex>
             </Stack>
           </Box>
@@ -237,13 +241,15 @@ const Editpage = () => {
                 value={newTag}
                 onChange={(e) => setNewTag(e.target.value)}
               />
-              <Button
-                color="navy"
-                marginLeft="0.5rem"
-                onClick={createTagHandler}
-              >
-                Create
-              </Button>
+              <Tooltip label={"Add New Tag"}>
+                <Button
+                  color="navy"
+                  marginLeft="0.5rem"
+                  onClick={createTagHandler}
+                >
+                  Create
+                </Button>
+              </Tooltip>
             </Flex>
             {/* Show current tags */}
             <CheckboxGroup
@@ -285,9 +291,11 @@ const Editpage = () => {
                 value={currentSubTask}
                 onChange={(e) => setCurrentSubTask(e.target.value)}
               />
-              <Button color="navy" ml="0.5rem" type="submit">
-                Add
-              </Button>
+              <Tooltip label={"Add New SubTask"}>
+                <Button color="navy" ml="0.5rem" type="submit">
+                  Add
+                </Button>
+              </Tooltip>
             </Flex>
           </form>
 
@@ -309,9 +317,11 @@ const Editpage = () => {
                     <Checkbox value={item.subTaskTitle}>
                       {item.subTaskTitle}
                     </Checkbox>
-                    <DeleteIcon
-                      onClick={() => deleteHandler(item.subTaskTitle)}
-                    />
+                    <Tooltip label={"delete subtask"}>
+                      <DeleteIcon
+                        onClick={() => deleteHandler(item.subTaskTitle)}
+                      />
+                    </Tooltip>
                   </Flex>
                 ))}
             </CheckboxGroup>
@@ -333,9 +343,11 @@ const Editpage = () => {
             </Text>
           </Flex>
           <Box m="1rem">
-            <Button color="navy" onClick={onOpen}>
-              Create New Task
-            </Button>
+            <Tooltip label={"Add new Task"}>
+              <Button color="navy" onClick={onOpen}>
+                Create New Task
+              </Button>
+            </Tooltip>
           </Box>
           <CreateTask isOpen={isOpen} onClose={onClose} />
         </Box>

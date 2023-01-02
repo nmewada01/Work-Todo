@@ -194,7 +194,8 @@ const Signup = () => {
               </FormControl>
             </Box>
             <Box>
-              <Editable defaultValue="Description">
+              <FormLabel >Image</FormLabel >
+              <Editable placeholder="Paste Link Here..." border={'2px solid white'}>
                 <EditablePreview />
                 <EditableTextarea
                   value={state.description}
