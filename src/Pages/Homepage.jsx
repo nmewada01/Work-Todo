@@ -6,7 +6,7 @@ import TaskCard from "../Components/TaskCard";
 import { getTasks } from "../Redux/AppReducer/action";
 
 const Homepage = () => {
-  const tasks = useSelector((state) => state.AppReducer.tasks);
+  const tasks = useSelector((state) => state?.AppReducer?.tasks);
 
   const [searchParams] = useSearchParams();
   const dispatch = useDispatch();
@@ -60,7 +60,7 @@ const Homepage = () => {
             </Text>
           </Box>
           {/* todo tasks */}
-          {tasks.length > 0 &&
+          {tasks?.length > 0 &&
             tasks
               .filter((item) => item.task_status === "todo")
               .filter(filterByParamTags)
@@ -90,7 +90,7 @@ const Homepage = () => {
             </Text>
           </Box>
           {/* in-progress tasks */}
-          {tasks.length > 0 &&
+          {tasks?.length > 0 &&
             tasks
               .filter((item) => item.task_status === "in-progress")
               .filter(filterByParamTags)
@@ -122,7 +122,7 @@ const Homepage = () => {
             </Text>
           </Box>
           {/* done tasks */}
-          {tasks.length > 0 &&
+          {tasks?.length > 0 &&
             tasks
               .filter((item) => item.task_status === "done")
               .filter(filterByParamTags)

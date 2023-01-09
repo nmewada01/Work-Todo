@@ -39,8 +39,8 @@ const date = new Date().toLocaleDateString();
 const Editpage = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { id } = useParams();
-  const tasks = useSelector((store) => store.AppReducer.tasks);
-  const tagList = useSelector((store) => store.AppReducer.tags);
+  const tasks = useSelector((store) => store?.AppReducer?.tasks);
+  const tagList = useSelector((store) => store?.AppReducer?.tags);
   const dispatch = useDispatch();
 
   const [taskTitle, setTaskTitle] = useState("");
@@ -146,7 +146,7 @@ const Editpage = () => {
 
   useEffect(() => {
     if (tasks) {
-      const currentTask = tasks.find((item) => item.id === Number(id));
+      const currentTask = tasks?.find((item) => item.id === Number(id));
 
       if (currentTask) {
         setTaskTitle(currentTask.title);
@@ -268,8 +268,8 @@ const Editpage = () => {
               }}
             >
               <Stack spacing={[1, 5]} direction={"column"}>
-                {tagList.length > 0 &&
-                  tagList.map((item) => {
+                {tagList?.length > 0 &&
+                  tagList?.map((item) => {
                     return (
                       <Flex
                         justifyContent={"space-between"}
@@ -322,8 +322,8 @@ const Editpage = () => {
                 updateSubTaskStatus(value);
               }}
             >
-              {subTasks.length &&
-                subTasks.map((item, index) => (
+              {subTasks?.length &&
+                subTasks?.map((item, index) => (
                   <Flex
                     key={index}
                     justifyContent="space-between"
