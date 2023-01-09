@@ -56,7 +56,7 @@ const register = (payload, toast) => (dispatch) => {
       return dispatch({ type: types.REGISTER_SUCCESS, payload: r.data });
     })
     .catch((e) => {
-      setToast(toast, e.response.data.message, "error");
+      setToast(toast, e.response.data.msg, "error");
       dispatch({ type: types.REGISTER_FAILURE, payload: e });
     });
 };
@@ -70,7 +70,7 @@ const login = (payload, toast) => (dispatch) => {
       return dispatch({ type: types.LOGIN_SUCCESS, payload: r.data });
     })
     .catch((e) => {
-      setToast(toast, e.response.data.message, "error");
+      setToast(toast, e.response.data.msg, "error");
       dispatch({ type: types.LOGIN_FAILURE, payload: e });
     });
 };
