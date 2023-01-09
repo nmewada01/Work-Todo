@@ -53,8 +53,7 @@ const register = (payload, toast) => (dispatch) => {
   return axios
     .post(`${process.env.REACT_APP_AUTHENTICATION}/auth/signup`, payload)
     .then((r) => {
-      setToast(toast, "Registered Successful", "success");
-      dispatch({ type: types.REGISTER_SUCCESS, payload: r.data });
+      return dispatch({ type: types.REGISTER_SUCCESS, payload: r.data });
     })
     .catch((e) => {
       setToast(toast, e.response.data.message, "error");
@@ -68,8 +67,7 @@ const login = (payload, toast) => (dispatch) => {
   return axios
     .post(`${process.env.REACT_APP_AUTHENTICATION}/auth/login`, payload)
     .then((r) => {
-      setToast(toast, "Login Successful", "success");
-      dispatch({ type: types.LOGIN_SUCCESS, payload: r.data.token });
+      return dispatch({ type: types.LOGIN_SUCCESS, payload: r.data });
     })
     .catch((e) => {
       setToast(toast, e.response.data.message, "error");

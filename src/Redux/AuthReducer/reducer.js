@@ -16,15 +16,15 @@ const reducer = (state = initialState, action) => {
       return { ...state, isLoading: true };
 
     case types.REGISTER_SUCCESS:
-      return { ...state, isLoading: false ,RegisterUser: payload};
+      return { ...state, isLoading: false, RegisterUser: payload };
     case types.REGISTER_FAILURE:
       return { ...state, isLoading: false, isError: true };
 
     case types.LOGIN_REQUEST:
       return { ...state, isLoading: true };
     case types.LOGIN_SUCCESS:
-      saveLocalData("token", payload);
-      return { ...state, isLoading: false, isAuth: true, token: payload };
+      saveLocalData("token", payload.token);
+      return { ...state, isLoading: false, isAuth: true, token: payload.token };
     case types.LOGIN_FAILURE:
       return {
         ...state,

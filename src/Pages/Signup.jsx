@@ -100,8 +100,26 @@ const Signup = () => {
       setToast(toast, isMobile.message, "error");
       return isMobile.status;
     }
-    dispatch(register(state, toast)).then((r) => {
-      navigate("/login", { replace: true });
+    dispatch(register(state, toast)).then((res) => {
+      if (res.payload.msg === "signup successfully") {
+        toast({
+          title: "Registered Successful",
+          description: "You are successfully Registered",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+          position: "top",
+        });
+        navigate("/login", { replace: true });
+      } else {
+        toast({
+          title: res.payload.msg,
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+          position: "top",
+        });
+      }
     });
   };
 

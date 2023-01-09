@@ -41,8 +41,26 @@ const Login = () => {
         password,
       };
 
-      dispatch(login(params, toast)).then((r) => {
-        navigate(comingFrom, { replace: true });
+      dispatch(login(params, toast)).then((res) => {
+        if (res.payload.msg === "login successfully") {
+          toast({
+            title: "Login Success",
+            description: "You are successfully logged in",
+            status: "success",
+            duration: 3000,
+            isClosable: true,
+            position: "top",
+          });
+          navigate(comingFrom, { replace: true });
+        } else {
+          toast({
+            title: res.payload.msg,
+            status: "error",
+            duration: 3000,
+            isClosable: true,
+            position: "top",
+          });
+        }
       });
     }
   };
